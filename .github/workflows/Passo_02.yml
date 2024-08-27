@@ -20,7 +20,7 @@ on:
         required: true
 
 jobs:
-  terraform:
+  setup_terraform:
     runs-on: ubuntu-latest
     defaults:
       run:

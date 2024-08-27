@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   checkout_code:
-    uses: ./.github/workflows/checkout_code.yml
+    uses: ./.github/workflows/Passo_01.yml
     with:
       environment: dev
       aws-assume-role-arn: "arn:aws:iam::443164188237:role/github-actions-budelao-pipeline"
@@ -19,7 +19,7 @@ jobs:
       aws-statefile-s3-bucket: "budelao-sa-east-1-terraform-statefile-novo"
       aws-lock-dynamodb-table: "budelao-sa-east-1-terraform-lock"
   setup_terraform:
-    uses: ./.github/workflows/setup_terraform.yml
+    uses: ./.github/workflows/Passo_02.yml
     with:
       environment: dev
       aws-assume-role-arn: "arn:aws:iam::443164188237:role/github-actions-budelao-pipeline"
@@ -27,7 +27,7 @@ jobs:
       aws-statefile-s3-bucket: "budelao-sa-east-1-terraform-statefile-novo"
       aws-lock-dynamodb-table: "budelao-sa-east-1-terraform-lock"
   config_aws_credentials:
-    uses: ./.github/workflows/config_aws_credentials.yml
+    uses: ./.github/workflows/Passo_03.yml
     with:
       environment: dev
       aws-assume-role-arn: "arn:aws:iam::443164188237:role/github-actions-budelao-pipeline"
@@ -35,7 +35,7 @@ jobs:
       aws-statefile-s3-bucket: "budelao-sa-east-1-terraform-statefile-novo"
       aws-lock-dynamodb-table: "budelao-sa-east-1-terraform-lock"  
   terraform:
-    uses: ./.github/workflows/terraform.yml
+    uses: ./.github/workflows/Passo_04.yml
     with:
       environment: dev
       aws-assume-role-arn: "arn:aws:iam::443164188237:role/github-actions-budelao-pipeline"
