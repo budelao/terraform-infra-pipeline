@@ -16,5 +16,5 @@ jobs:
       environment: prod
       aws-assume-role-arn: "arn:aws:iam::443164188237:role/github-actions-budelao-pipeline"
       aws-region: "sa-east-1"
-      aws-statefile-s3-bucket: "budelao-sa-east-1-terraform-statefile"
+      aws-statefile-s3-bucket: "budelao-sa-east-1-terraform-statefile-novo"
       aws-lock-dynamodb-table: "budelao-sa-east-1-terraform-lock"
