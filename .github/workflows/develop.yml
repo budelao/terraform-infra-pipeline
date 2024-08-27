@@ -10,19 +10,28 @@ permissions:
   contents: read
 
 jobs:
-  Passo_01:
-    uses: ./.github/workflows/Passo_01.yml
-  Passo_02:
-    uses: ./.github/workflows/Passo_02.yml
-    with:
-      aws-assume-role-arn: "arn:aws:iam::443164188237:role/github-actions-budelao-pipeline"
-      aws-region: "sa-east-1"
-  Passo_03:
-    uses: ./.github/workflows/Passo_03.yml
-    with:
-      environment: dev
-      aws-assume-role-arn: "arn:aws:iam::443164188237:role/github-actions-budelao-pipeline"
-      aws-region: "sa-east-1"
-      aws-statefile-s3-bucket: "budelao-sa-east-1-terraform-statefile-novo"
-      aws-lock-dynamodb-table: "budelao-sa-east-1-terraform-lock"        
+  terraform_steps:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Passo 01
+        uses: ./.github/workflows/Passo_01.yml
+
+      - name: Passo 02
+        uses: ./.github/workflows/Passo_02.yml
+
+        with:
+          aws-assume-role-arn: "arn:aws:iam::443164188237:role/github-actions-budelao-pipeline"
+          aws-region: "sa-east-1"
+      - name: Passo 03
+        uses: ./.github/workflows/Passo_03.yml
+        with:
+          environment: dev
+          aws-assume-role-arn: "arn:aws:iam::443164188237:role/github-actions-budelao-pipeline"
+          aws-region: "sa-east-1"
+          aws-statefile-s3-bucket: "budelao-sa-east-1-terraform-statefile-novo"
+          aws-lock-dynamodb-table: "budelao-sa-east-1-terraform-lock"        
           
