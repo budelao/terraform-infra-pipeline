@@ -10,6 +10,30 @@ permissions:
   contents: read
 
 jobs:
+  checkout_code:
+    uses: ./.github/workflows/checkout_code.yml
+    with:
+      environment: dev
+      aws-assume-role-arn: "arn:aws:iam::443164188237:role/github-actions-budelao-pipeline"
+      aws-region: "sa-east-1"
+      aws-statefile-s3-bucket: "budelao-sa-east-1-terraform-statefile-novo"
+      aws-lock-dynamodb-table: "budelao-sa-east-1-terraform-lock"
+  setup_terraform:
+    uses: ./.github/workflows/setup_terraform.yml
+    with:
+      environment: dev
+      aws-assume-role-arn: "arn:aws:iam::443164188237:role/github-actions-budelao-pipeline"
+      aws-region: "sa-east-1"
+      aws-statefile-s3-bucket: "budelao-sa-east-1-terraform-statefile-novo"
+      aws-lock-dynamodb-table: "budelao-sa-east-1-terraform-lock"
+  config_aws_credentials:
+    uses: ./.github/workflows/config_aws_credentials.yml
+    with:
+      environment: dev
+      aws-assume-role-arn: "arn:aws:iam::443164188237:role/github-actions-budelao-pipeline"
+      aws-region: "sa-east-1"
+      aws-statefile-s3-bucket: "budelao-sa-east-1-terraform-statefile-novo"
+      aws-lock-dynamodb-table: "budelao-sa-east-1-terraform-lock"  
   terraform:
     uses: ./.github/workflows/terraform.yml
     with:
@@ -17,4 +41,4 @@ jobs:
       aws-assume-role-arn: "arn:aws:iam::443164188237:role/github-actions-budelao-pipeline"
       aws-region: "sa-east-1"
       aws-statefile-s3-bucket: "budelao-sa-east-1-terraform-statefile-novo"
-      aws-lock-dynamodb-table: "budelao-sa-east-1-terraform-lock"
+      aws-lock-dynamodb-table: "budelao-sa-east-1-terraform-lock"        
