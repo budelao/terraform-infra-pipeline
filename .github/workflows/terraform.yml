@@ -46,14 +46,14 @@ jobs:
       run:
         shell: bash
     steps:
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v4
-      with:
-        role-to-assume: ${{ inputs.aws-assume-role-arn }}
-        role-session-name: GitHub_to_AWS_via_FederatedOIDC
-        aws-region: ${{ inputs.aws-region }}
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ inputs.aws-assume-role-arn }}
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: ${{ inputs.aws-region }}
 
-  Terraform:
+  Terraform_Steps:
     runs-on: ubuntu-latest
     defaults:
       run:
